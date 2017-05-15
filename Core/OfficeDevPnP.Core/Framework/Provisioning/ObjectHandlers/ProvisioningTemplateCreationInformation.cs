@@ -19,12 +19,14 @@ namespace OfficeDevPnP.Core.Framework.Provisioning.ObjectHandlers
         private bool includeTermGroupsSecurity = false;
         private bool includeSearchConfiguration = false;
         private List<String> propertyBagPropertiesToPreserve;
-        private List<String> contentTypeGroupsToInclude;
         private bool persistPublishingFiles = false;
         private bool includeNativePublishingFiles = false;
         private bool skipVersionCheck = false;
         private List<ExtensibilityHandler> extensibilityHandlers = new List<ExtensibilityHandler>();
         private Handlers handlersToProcess = Handlers.All;
+        private List<String> pagesLibraries;
+
+
 
         public ProvisioningProgressDelegate ProgressDelegate { get; set; }
         public ProvisioningMessagesDelegate MessagesDelegate { get; set; }
@@ -33,7 +35,18 @@ namespace OfficeDevPnP.Core.Framework.Provisioning.ObjectHandlers
         {
             this.baseTemplate = web.GetBaseTemplate();
             this.propertyBagPropertiesToPreserve = new List<String>();
-            this.contentTypeGroupsToInclude = new List<String>();
+        }
+
+        public List<String> PagesLibraries
+        {
+            get
+            {
+                return this.pagesLibraries;
+            }
+            set
+            {
+                this.pagesLibraries = value;
+            }
         }
 
         /// <summary>
@@ -177,11 +190,6 @@ namespace OfficeDevPnP.Core.Framework.Provisioning.ObjectHandlers
         {
             get { return this.propertyBagPropertiesToPreserve; }
             set { this.propertyBagPropertiesToPreserve = value; }
-        }
-
-        public List<String> ContentTypeGroupsToInclude {
-            get { return this.contentTypeGroupsToInclude; }
-            set { this.contentTypeGroupsToInclude = value; }
         }
 
         public bool IncludeSiteGroups
